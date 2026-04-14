@@ -5,6 +5,6 @@ Descreva as mudanças realizadas
 Ex: Closes #1
 
 ## Checklist
-- [ ] Testei as mudanças
-- [ ] Não quebrei nada
-- [ ] Código revisado
+- [x] Testei as mudanças
+- [x] Não quebrei nada
+- [x] Código revisado
