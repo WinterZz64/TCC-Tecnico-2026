@@ -1,0 +1,63 @@
+/* Animação RGB Infinita */
+@keyframes rgb-animation {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Aplicando no Botão de Interação */
+button {
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background-size: 400%;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.4s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    /* Aqui o segredo do RGB */
+    animation: rgb-flow 20s linear infinite;
+}
+
+/* Animação de fluxo do gradiente no botão */
+@keyframes rgb-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    /* Deixa o efeito RGB mais rápido ao passar o mouse */
+    animation: rgb-flow 2s linear infinite; 
+}
+
+/* Bordas dos Cards com Efeito Chroma */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 2px solid transparent;
+    
+    /* Borda que muda de cor */
+    border-image: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);
+    border-image-slice: 1;
+    animation: rgb-animation 5s linear infinite;
+    
+    border-radius: 20px; /* Nota: border-image pode anular o radius em alguns browsers */
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+/* O texto do título também pode ser RGB */
+.glitch {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    animation: rgb-animation 3s linear infinite;
+}
