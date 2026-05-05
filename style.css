@@ -1,63 +1,167 @@
-/* Animação RGB Infinita */
-@keyframes rgb-animation {
-    0% { filter: hue-rotate(0deg); }
-    100% { filter: hue-rotate(360deg); }
+:root {
+    --black: #000000;
+    --dark-grey: #0a0a0a;
+    --rgb-gradient: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8);
 }
 
-/* Aplicando no Botão de Interação */
-button {
-    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-    background-size: 400%;
-    border: none;
-    padding: 15px 25px;
-    border-radius: 10px;
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Rajdhani', sans-serif;
+    cursor: crosshair;
+}
+
+body {
+    background-color: var(--black);
     color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.4s;
+    overflow-x: hidden;
+}
+
+/* Linha RGB Infinita no Topo */
+.rgb-line-top {
+    height: 4px;
+    width: 100%;
+    background: var(--rgb-gradient);
+    background-size: 400%;
+    animation: moveRGB 5s linear infinite;
+}
+
+header {
+    height: 40vh;
     display: flex;
     align-items: center;
-    gap: 10px;
-    
-    /* Aqui o segredo do RGB */
-    animation: rgb-flow 20s linear infinite;
+    justify-content: center;
+    background: radial-gradient(circle, #111 0%, #000 100%);
 }
 
-/* Animação de fluxo do gradiente no botão */
-@keyframes rgb-flow {
+.chrono-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    letter-spacing: 10px;
+    background: var(--rgb-gradient);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: moveRGB 8s linear infinite;
+}
+
+.subtitle {
+    text-align: center;
+    letter-spacing: 5px;
+    color: #444;
+    font-weight: bold;
+}
+
+/* Container de Vidro */
+.glass-container {
+    max-width: 900px;
+    margin: -50px auto 50px;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid #1a1a1a;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(0,0,0,1);
+}
+
+h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Input e Botão */
+.input-wrapper {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+input {
+    flex: 1;
+    background: #000;
+    border: 1px solid #222;
+    padding: 20px;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #555;
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    outline: none;
+}
+
+button {
+    position: relative;
+    padding: 0 30px;
+    background: #fff;
+    color: #000;
+    border: none;
+    font-weight: 900;
+    font-family: 'Orbitron', sans-serif;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(255,255,255,0.4);
+}
+
+/* Log Itens */
+.log-item {
+    background: #050505;
+    border: 1px solid #111;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    transition: 0.4s;
+}
+
+.log-item:hover {
+    border-color: #444;
+    background: #080808;
+}
+
+.status-badge {
+    background: #fff;
+    color: #000;
+    padding: 2px 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.status-badge.alert {
+    background: #ff0000;
+    color: #fff;
+}
+
+/* Animações */
+@keyframes moveRGB {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-    /* Deixa o efeito RGB mais rápido ao passar o mouse */
-    animation: rgb-flow 2s linear infinite; 
+.reveal {
+    animation: slideIn 0.5s ease forwards;
 }
 
-/* Bordas dos Cards com Efeito Chroma */
-.glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    border: 2px solid transparent;
-    
-    /* Borda que muda de cor */
-    border-image: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);
-    border-image-slice: 1;
-    animation: rgb-animation 5s linear infinite;
-    
-    border-radius: 20px; /* Nota: border-image pode anular o radius em alguns browsers */
-    padding: 30px;
-    margin: 20px auto;
-    max-width: 800px;
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* O texto do título também pode ser RGB */
-.glitch {
-    font-size: 3rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    animation: rgb-animation 3s linear infinite;
-}
